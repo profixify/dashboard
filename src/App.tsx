@@ -27,7 +27,6 @@ type RouterType = Pick<RouteObject, "path"> & {
   isProtected?: boolean;
 };
 const ProtectedRoute = () => {
-  console.log("CEVDET")
   const { isExpired, accessToken } = useJwt();
   return isExpired && !accessToken ? (
     <Navigate to="/login" />
@@ -73,11 +72,10 @@ const RouterProvider: RouterProviderProps = () => {
   );
 };
 function App() {
-  console.log("ALSSALKSKLA")
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename="/dashboard">
+      <BrowserRouter basename={import.meta.env.PROD ? "/dashboard" : ""}>
         <RouterProvider />
       </BrowserRouter>
     </QueryClientProvider>

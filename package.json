@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "npm run build && PORT=3001 serve dist"
+    "deploy": "yarn build && PORT=3001 serve dist",
+    "serve": "serve dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
