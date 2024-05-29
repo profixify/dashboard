@@ -14,9 +14,16 @@ const Modal: FC<ModalProps> = ({
   onCancel,
   title,
   children,
+  ...props
 }) => {
   return (
-    <Antd.Modal open={open} onCancel={onCancel} title={title} footer={false}>
+    <Antd.Modal
+      {...props}
+      open={open}
+      onCancel={onCancel}
+      title={title}
+      footer={false}
+    >
       <Antd.Spin spinning={isLoading}>{children}</Antd.Spin>
     </Antd.Modal>
   );
