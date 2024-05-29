@@ -12,7 +12,7 @@ export const FormInput: FC<FormInputProps> = ({
   inputType = "text",
 }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <label className={error ? "text-red-600" : undefined} htmlFor="">
         {label}
       </label>

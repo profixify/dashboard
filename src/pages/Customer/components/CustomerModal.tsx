@@ -66,24 +66,29 @@ const CustomerModal: FC<CustomerModalProps> = ({
   return (
     <Modal isLoading={isLoading} open={open} onCancel={onCancel} title={title}>
       <form onSubmit={handleSubmit(submitAction)}>
-        <FormInput
-          label="Name"
-          name="name"
-          control={control}
-          error={errors.name}
-        />
-        <FormInput
-          label="Surname"
-          name="surname"
-          control={control}
-          error={errors.surname}
-        />
-        <FormInput
-          label="Identity Number"
-          name="identityNumber"
-          control={control}
-          error={errors.identityNumber}
-        />
+        <div className="flex items-center gap-2">
+          <FormInput
+            label="Name"
+            name="name"
+            control={control}
+            error={errors.name}
+          />
+          <FormInput
+            label="Surname"
+            name="surname"
+            control={control}
+            error={errors.surname}
+          />
+        </div>
+        <div className="w-1/2">
+          <FormInput
+            label="Identity Number"
+            name="identityNumber"
+            control={control}
+            error={errors.identityNumber}
+          />
+        </div>
+
         <FormPhoneInput
           errors={{
             phoneNumber: errors.phoneNumber,
@@ -93,6 +98,7 @@ const CustomerModal: FC<CustomerModalProps> = ({
           name={{ phoneNumber: "phoneNumber", countryCode: "countryCode" }}
           control={control}
         />
+
         <FormButton errors={errors}>Save Customer</FormButton>
       </form>
     </Modal>
