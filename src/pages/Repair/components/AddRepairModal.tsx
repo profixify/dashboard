@@ -36,8 +36,8 @@ const AddRepairModal: FC<AddRepairModalProps> = ({
   const schema = z.object({
     customer: z.string(),
     sparePart: z.string(),
-    simLockPassword: z.string(),
-    phoneLockPassword: z.string(),
+    simLockPassword: z.string().optional(),
+    phoneLockPassword: z.string().optional(),
   });
 
   const {
@@ -69,7 +69,7 @@ const AddRepairModal: FC<AddRepairModalProps> = ({
 
   return (
     <Modal isLoading={isLoading} open={open} onCancel={onCancel} title={title}>
-      <form onSubmit={handleSubmit(submitAction)}>
+      <form className="flex flex-col gap-2" onSubmit={handleSubmit(submitAction)}>
         <FormSelect
           label="Customer"
           name="customer"
@@ -85,23 +85,26 @@ const AddRepairModal: FC<AddRepairModalProps> = ({
           name="sparePart"
           control={control}
           selectValues={spareParts?.map((sparePart: SparePartType) => ({
-            label: sparePart.name,
+            label: `${sparePart.name} (${sparePart.leftAmount})`,
             value: sparePart.uuid,
           }))}
           error={errors.sparePart}
         />
-        <FormInput
-          name="phoneLockPassword"
-          error={errors.phoneLockPassword}
-          label="Phone Lock Password"
-          control={control}
-        />
-        <FormInput
-          name="simLockPassword"
-          error={errors.simLockPassword}
-          label="Sim Lock Password"
-          control={control}
-        />
+        <div className="flex items-center gap-2">
+          <FormInput
+            name="phoneLockPassword"
+            error={errors.phoneLockPassword}
+            label="Phone Lock Password"
+            control={control}
+          />
+          <FormInput
+            name="simLockPassword"
+            error={errors.simLockPassword}
+            label="Sim Lock Password"
+            control={control}
+          />
+        </div>
+
         <FormButton errors={errors}>Save</FormButton>
       </form>
     </Modal>
