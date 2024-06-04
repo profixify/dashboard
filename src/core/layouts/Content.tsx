@@ -1,10 +1,10 @@
+import Wrapper from "@/core/layouts/Wrapper.tsx";
 import { cn } from "@/core/libs/utils";
 import { Button, Card } from "antd";
 import { FC } from "react";
+import { AiTwotoneEdit } from "react-icons/ai";
 import { FaLeftLong, FaPlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import Wrapper from "@/core/layouts/Wrapper.tsx";
-import { AiTwotoneEdit } from "react-icons/ai";
 
 interface ContentProps {
   children?: React.ReactNode;
@@ -72,11 +72,19 @@ const Content: FC<ContentProps> = ({
     <Wrapper>
       <div
         className={cn(
-          "p-5 w-full min-h-full bg-slate-200",
+          "p-5 w-full min-h-full bg-slate-200 overflow-x-scroll",
           isFullPage ? "h-screen" : undefined
         )}
       >
-        <Card title={_title} extra={extra}>
+        <Card
+          title={_title}
+          extra={extra}
+          styles={{
+            body: {
+              overflowX: "scroll",
+            },
+          }}
+        >
           {children}
         </Card>
       </div>

@@ -1,16 +1,17 @@
-import Content from "@/core/layouts/Content.tsx";
-import { Table, Tabs, TabsProps } from "antd";
-import { useDashboard, useDashboardCounts } from "@/services/Dashboard.tsx";
-import { ColumnsType } from "antd/es/table";
+import { IconButton } from "@/components/Button";
+import Table from "@/components/Table";
 import {
   CustomerColumn,
   RepairCodeColumn,
   SparePartColumn,
 } from "@/components/Table/TableColumns";
+import Content from "@/core/layouts/Content.tsx";
 import { RepairType } from "@/pages/Repair/types.ts";
-import { Link } from "react-router-dom";
-import { IconButton } from "@/components/Button";
+import { useDashboard, useDashboardCounts } from "@/services/Dashboard";
+import { Tabs, TabsProps } from "antd";
+import { ColumnsType } from "antd/es/table";
 import { FaRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { data } = useDashboard();
@@ -45,58 +46,55 @@ const Dashboard = () => {
       },
     },
   ];
-  if (data) {
-    const tabItems: TabsProps["items"] = [
-      {
-        label: `Waited Repair (${counts?.waitingRepair})`,
-        key: "WAITED_REPAIR",
-        children: (
-          <Table
-            columns={columns}
-            rowKey="uuid"
-            dataSource={data?.filter(
-              (item: RepairType) => item.status === "WAITING_REPAIR"
-            )}
-          />
-        ),
-      },
-      {
-        label: `Repairing (${counts?.repairing})`,
-        key: "REPAIRING",
-        children: (
-          <Table
-            columns={columns}
-            rowKey="uuid"
-            dataSource={data?.filter(
-              (item: RepairType) => item.status === "REPAIRING"
-            )}
-          />
-        ),
-      },
-      {
-        label: `Repaired (${counts?.repaired})`,
-        key: "REPAIRED",
-        children: (
-          <Table
-            columns={columns}
-            rowKey="uuid"
-            dataSource={data?.filter(
-              (item: RepairType) => item.status === "REPAIRED"
-            )}
-          />
-        ),
-      },
-    ];
+  const tabItems: TabsProps["items"] = [
+    {
+      label: `Waited Repair (${counts?.waitingRepair ?? "Loading"})`,
+      key: "WAITED_REPAIR",
+      children: (
+        <Table
+          columns={columns}
+          rowKey="uuid"
+          dataSource={data?.filter(
+            (item: RepairType) => item.status === "WAITING_REPAIR"
+          )}
+        />
+      ),
+    },
+    {
+      label: `Repairing (${counts?.repairing ?? "Loading"})`,
+      key: "REPAIRING",
+      children: (
+        <Table
+          columns={columns}
+          rowKey="uuid"
+          dataSource={data?.filter(
+            (item: RepairType) => item.status === "REPAIRING"
+          )}
+        />
+      ),
+    },
+    {
+      label: `Repaired (${counts?.repaired ?? "Loading"})`,
+      key: "REPAIRED",
+      children: (
+        <Table
+          columns={columns}
+          rowKey="uuid"
+          dataSource={data?.filter(
+            (item: RepairType) => item.status === "REPAIRED"
+          )}
+        />
+      ),
+    },
+  ];
 
-    return (
-      <Content title="Dashboard">
-        <div className="flex flex-col gap-2">
-          <Tabs items={tabItems} defaultActiveKey="WAITED_REPAIR" type="card" />
-        </div>
-      </Content>
-    );
-  }
-  return <Content>deneme</Content>;
+  return (
+    <Content title="Dashboard">
+      <div className="flex flex-col gap-2">
+        <Tabs items={tabItems} defaultActiveKey="WAITED_REPAIR" type="card" />
+      </div>
+    </Content>
+  );
 };
 
 export default Dashboard;
