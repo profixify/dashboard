@@ -5,3 +5,7 @@ export type SparePartType = BaseSparePart;
 export type SparePartTableType = ColumnsType<BaseSparePart>;
 
 export type AddSparePartFormInputs = Omit<BaseSparePart, "leftAmount" | "uuid">;
+export type EditSparePartFormInputs = Omit<
+  BaseSparePart,
+  "leftAmount" | "uuid"
+>;
