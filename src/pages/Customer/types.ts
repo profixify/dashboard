@@ -10,3 +10,6 @@ export type CreateCustomerType = Omit<BaseCustomer, "uuid" | "fullName">;
 export type CreateCustomerFormType = CreateCustomerType & {
   countryCode: string;
 };
+
+export type EditCustomerType = Omit<BaseCustomer, "uuid" | "fullName">;
+export type EditCustomerFormType = EditCustomerType;

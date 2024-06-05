@@ -18,7 +18,7 @@ interface CustomerModalProps extends ModalProps {
   toggleLoading: () => void;
 }
 
-const CustomerModal: FC<CustomerModalProps> = ({
+const AddCustomerModal: FC<CustomerModalProps> = ({
   isLoading,
   open,
   onCancel,
@@ -105,4 +105,4 @@ const CustomerModal: FC<CustomerModalProps> = ({
   );
 };
 
-export default CustomerModal;
+export default AddCustomerModal;

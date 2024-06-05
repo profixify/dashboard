@@ -10,7 +10,7 @@ import { Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { FaRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import CustomerModal from "./components/CustomerModal";
+import AddCustomerModal from "./components/AddCustomerModal.tsx";
 
 const Customer = () => {
   const { data: customers, refetch: refetchCustomers } = useCustomers();
@@ -44,7 +44,7 @@ const Customer = () => {
         dataSource={customers as CustomerType[]}
         rowKey="uuid"
       />
-      <CustomerModal
+      <AddCustomerModal
         toggleLoading={toggleLoading}
         isLoading={isLoading}
         open={isOpen}
