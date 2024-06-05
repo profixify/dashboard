@@ -21,6 +21,7 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(schema),
+    defaultValues: import.meta.env.DEV ? {username: "demo", password: "demo"} : undefined
   });
   const submitAction = async (data: LoginFormData) => {
     await mutateAsync(data);
