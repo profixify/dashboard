@@ -23,6 +23,7 @@ const FormSelect: FC<FormSelectProps> = ({
   error,
   selectValues,
   defaultValue,
+  placeholder,
 }) => {
   return (
     <div className="flex flex-col w-full">
@@ -38,6 +39,7 @@ const FormSelect: FC<FormSelectProps> = ({
             id={name}
             options={selectValues}
             defaultValue={defaultValue}
+            placeholder={placeholder}
             {...field}
           />
         )}
