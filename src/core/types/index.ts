@@ -5,7 +5,6 @@ export interface BaseCustomer extends BaseModel {
   name: string;
   surname: string;
   fullName?: string;
-  identityNumber: string;
   phoneNumber: string;
 }
 

@@ -19,11 +19,6 @@ const Customer = () => {
 
   const columns: ColumnsType<CustomerTableType> = [
     { key: "fullName", dataIndex: "fullName", title: "Full Name" },
-    {
-      key: "identityNumber",
-      dataIndex: "identityNumber",
-      title: "Identity Number",
-    },
     { key: "phoneNumber", dataIndex: "phoneNumber", title: "Phone Number" },
     {
       dataIndex: "uuid",
