@@ -3,8 +3,9 @@ import { cn } from "@/core/libs/utils";
 import { Button, Card } from "antd";
 import { FC } from "react";
 import { AiTwotoneEdit } from "react-icons/ai";
-import { FaLeftLong, FaPlus } from "react-icons/fa6";
+import { FaLeftLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { PiPlusCircleDuotone } from "react-icons/pi";
 
 interface ContentProps {
   children?: React.ReactNode;
@@ -44,8 +45,8 @@ const Content: FC<ContentProps> = ({
   );
   const add = addAction ? (
     <Button
-      className="flex items-center gap-2"
-      icon={<FaPlus />}
+      className="flex items-center px-2"
+      icon={<PiPlusCircleDuotone className="text-xl" />}
       onClick={addAction?.onClick}
       type="primary"
     >
@@ -73,7 +74,7 @@ const Content: FC<ContentProps> = ({
       <div
         className={cn(
           "p-5 w-full min-h-full bg-slate-200 overflow-x-scroll",
-          isFullPage ? "h-screen" : undefined
+          isFullPage ? "h-screen" : undefined,
         )}
       >
         <Card

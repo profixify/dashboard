@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { IconButton } from "@/components/Button";
-import { FaRightLong } from "react-icons/fa6";
 import { FC } from "react";
+import { PiArrowCircleRightDuotone } from "react-icons/pi";
+import { Tooltip } from "antd";
 
 interface ShowDetailButtonProps {
   url: string;
@@ -11,7 +11,9 @@ interface ShowDetailButtonProps {
 export const ShowDetailButton: FC<ShowDetailButtonProps> = ({ url, uuid }) => {
   return (
     <Link to={`${url}/${uuid}`}>
-      <IconButton shape="circle" icon={<FaRightLong />} />
+      <Tooltip title="Show Detail" color="blue">
+        <PiArrowCircleRightDuotone className="text-2xl hover:text-blue-600" />
+      </Tooltip>
     </Link>
   );
 };

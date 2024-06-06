@@ -1,4 +1,3 @@
-import { IconButton } from "@/components/Button";
 import Content from "@/core/layouts/Content.tsx";
 import { useLoading, useModal } from "@/hooks";
 import type {
@@ -8,9 +7,9 @@ import type {
 import { useCustomers } from "@/services/Customer.ts";
 import { Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { FaRightLong } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 import AddCustomerModal from "./components/AddCustomerModal.tsx";
+import { URLS } from "@/core/consts/urls.ts";
+import { ShowDetailButton } from "@/components/Table/TableColumns";
 
 const Customer = () => {
   const { data: customers, refetch: refetchCustomers } = useCustomers();
@@ -26,10 +25,9 @@ const Customer = () => {
     },
     { key: "phoneNumber", dataIndex: "phoneNumber", title: "Phone Number" },
     {
-      render: (_, record) => (
-        <Link to={`/customers/${record.uuid}`}>
-          <IconButton shape="circle" icon={<FaRightLong />} />
-        </Link>
+      dataIndex: "uuid",
+      render: (value: string) => (
+        <ShowDetailButton url={URLS.CUSTOMER} uuid={value} />
       ),
     },
   ];

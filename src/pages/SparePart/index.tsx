@@ -1,12 +1,11 @@
-import { IconButton } from "@/components/Button";
 import Content from "@/core/layouts/Content.tsx";
 import { useLoading, useModal } from "@/hooks";
 import AddSparePartModal from "@/pages/SparePart/components/AddSparePartModal.tsx";
 import { useSpareParts } from "@/services/SparePart";
 import { Table } from "antd";
-import { FaRightLong } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 import type { SparePartTableType } from "./types";
+import { URLS } from "@/core/consts/urls.ts";
+import { ShowDetailButton } from "@/components/Table/TableColumns";
 
 const SparePart = () => {
   const { isOpen, openModal, closeModal } = useModal();
@@ -21,12 +20,16 @@ const SparePart = () => {
       title: "Price",
     },
     { key: "amount", dataIndex: "amount", title: "Amount" },
-    { key: "leftAmount", dataIndex: "leftAmount", title: "Left Amount" },
     {
-      render: (_, record) => (
-        <Link to={`/spare-parts/${record.uuid}`}>
-          <IconButton shape="circle" icon={<FaRightLong />} />
-        </Link>
+      key: "leftAmount",
+      dataIndex: "leftAmount",
+      title: "Left Amount",
+    },
+    { key: "tempAmount", dataIndex: "tempAmount", title: "Rezerve Amount" },
+    {
+      dataIndex: "uuid",
+      render: (value: string) => (
+        <ShowDetailButton url={URLS.SPARE_PART} uuid={value} />
       ),
     },
   ];
