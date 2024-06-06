@@ -12,7 +12,7 @@ export const defaultCurrencyOptions: FormSelectCurrencyOptionsType[] = [
 ];
 
 export const repairStatusOptions: FormSelectRepairStatusOptionsType[] = [
-  { value: REPAIR_STATUS.WAITING_REPAIRING, label: "Waiting Repair" },
+  { value: REPAIR_STATUS.WAITING_REPAIR, label: "Waiting Repair" },
   { value: REPAIR_STATUS.REPAIRING, label: "Repairing" },
   { value: REPAIR_STATUS.REPAIRED, label: "Repaired" },
 ];

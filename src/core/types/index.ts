@@ -60,7 +60,7 @@ export const CURRENCY = {
 } as const;
 
 export const REPAIR_STATUS = {
-  WAITING_REPAIRING: "WAITING_REPAIRING",
+  WAITING_REPAIR: "WAITING_REPAIR",
   REPAIRING: "REPAIRING",
   REPAIRED: "REPAIRED",
 } as const;
