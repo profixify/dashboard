@@ -52,8 +52,8 @@ const Repair = () => {
       render: EmptyColumn,
     },
     {
-      key: "status",
-      dataIndex: "status",
+      key: "latestStatus",
+      dataIndex: "latestStatus",
       title: "Status",
     },
     {

@@ -14,6 +14,7 @@ export interface BaseSparePart extends BaseModel {
   priceWithCurrency: string;
   amount: number;
   leftAmount: number;
+  tempAmount: number;
 }
 
 export interface BaseRepair extends BaseModel {
@@ -22,7 +23,14 @@ export interface BaseRepair extends BaseModel {
   sparePart: BaseSparePart;
   simLockPassword: string;
   phoneLockPassword: string;
-  status?: "WAITING_REPAIR" | "REPAIRING" | "REPAIRED";
+  latestStatus?: "WAITING_REPAIR" | "REPAIRING" | "REPAIRED";
+}
+
+export interface BaseRepairStatus extends BaseModel {
+  title: string;
+  note: string;
+  status: string;
+  createdAt: string;
 }
 
 export interface BaseSettings {

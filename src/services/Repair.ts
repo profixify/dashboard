@@ -5,26 +5,24 @@ import { UpdateRepairStatusFormInputs } from "@/pages/Repair/types.ts";
 
 export const useRepairs = () => {
   const axios = useAxios();
-  const repairs = useQuery({
+  return useQuery({
     queryKey: ["repairs"],
     queryFn: async () => {
       const response = await axios.get("/repairs/");
       return response.data;
     },
   });
-  return repairs;
 };
 
 export const useRepair = ({ uuid }: { uuid?: string }) => {
   const axios = useAxios();
-  const repair = useQuery({
+  return useQuery({
     queryKey: ["repair"],
     queryFn: async () => {
       const response = await axios.get(`/repairs/${uuid}/`);
       return response.data;
     },
   });
-  return repair;
 };
 
 export const useCreateRepair = ({
@@ -33,7 +31,7 @@ export const useCreateRepair = ({
   onSuccess,
 }: CreateMutationAction) => {
   const axios = useAxios();
-  const createRepair = useMutation({
+  return useMutation({
     mutationKey: ["createRepair"],
     mutationFn: async (data: any) => {
       const response = await axios.post("/repairs/", data);
@@ -43,7 +41,6 @@ export const useCreateRepair = ({
     onMutate,
     onSuccess,
   });
-  return createRepair;
 };
 
 export const useUpdateRepairStatus = ({
@@ -53,15 +50,25 @@ export const useUpdateRepairStatus = ({
   onSuccess,
 }: UpdateMutationAction) => {
   const axios = useAxios();
-  const updateRepair = useMutation({
+  return useMutation({
     mutationKey: ["updateRepairStatus"],
     mutationFn: async (data: UpdateRepairStatusFormInputs) => {
-      const response = await axios.patch(`/repairs/${uuid}/`, data);
+      const response = await axios.post(`/repairs/${uuid}/statuses/`, data);
       return response.data;
     },
     onError,
     onMutate,
     onSuccess,
   });
-  return updateRepair;
+};
+
+export const useRepairStatus = ({ uuid }: { uuid?: string }) => {
+  const axios = useAxios();
+  return useQuery({
+    queryKey: ["repairStatus"],
+    queryFn: async () => {
+      const response = await axios.get(`/repairs/${uuid}/statuses/`);
+      return response.data;
+    },
+  });
 };

@@ -55,7 +55,7 @@ const Dashboard = () => {
           columns={columns}
           rowKey="uuid"
           dataSource={data?.filter(
-            (item: RepairType) => item.status === "WAITING_REPAIR"
+            (item: RepairType) => item.latestStatus === "WAITING_REPAIR",
           )}
         />
       ),
@@ -68,7 +68,7 @@ const Dashboard = () => {
           columns={columns}
           rowKey="uuid"
           dataSource={data?.filter(
-            (item: RepairType) => item.status === "REPAIRING"
+            (item: RepairType) => item.latestStatus === "REPAIRING",
           )}
         />
       ),
@@ -81,7 +81,7 @@ const Dashboard = () => {
           columns={columns}
           rowKey="uuid"
           dataSource={data?.filter(
-            (item: RepairType) => item.status === "REPAIRED"
+            (item: RepairType) => item.latestStatus === "REPAIRED",
           )}
         />
       ),

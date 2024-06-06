@@ -10,6 +10,7 @@ import { UpdateRepairStatusFormInputs } from "@/pages/Repair/types.ts";
 import { useUpdateRepairStatus } from "@/services/Repair.ts";
 import { useParams } from "react-router-dom";
 import { useNotification } from "@/hooks";
+import { FormInput } from "@/components/Form/FormInput.tsx";
 
 interface UpdateRepairStatusModalProps extends ModalProps {
   toggleLoading: () => void;
@@ -39,6 +40,8 @@ const UpdateRepairStatusModal: FC<UpdateRepairStatusModalProps> = ({
   });
   const schema = z.object({
     status: z.string(),
+    title: z.string(),
+    note: z.string().optional(),
   });
   const {
     control,
@@ -53,6 +56,19 @@ const UpdateRepairStatusModal: FC<UpdateRepairStatusModalProps> = ({
   return (
     <Modal isLoading={isLoading} open={open} onCancel={onCancel} title={title}>
       <form onSubmit={handleSubmit(submitAction)}>
+        <FormInput
+          name="title"
+          error={errors.title}
+          label="Title"
+          control={control}
+        />
+        <FormInput
+          name="note"
+          error={errors.note}
+          label="Note"
+          control={control}
+          inputType="textarea"
+        />
         <FormSelect
           name="status"
           control={control}
@@ -60,6 +76,7 @@ const UpdateRepairStatusModal: FC<UpdateRepairStatusModalProps> = ({
           selectValues={repairStatusOptions}
           error={errors.status}
         />
+
         <FormButton errors={errors}>Save</FormButton>
       </form>
     </Modal>
