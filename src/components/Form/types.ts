@@ -4,7 +4,7 @@ export interface BaseFormInput {
   label: string;
   control: any;
   placeholder?: string;
-  inputType?: "text" | "password" | "number";
+  inputType?: "text" | "password" | "number" | "textarea";
 }
 
 export interface FormInputProps extends BaseFormInput {

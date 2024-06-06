@@ -37,6 +37,15 @@ export const FormInput: FC<FormInputProps> = ({
                 {...field}
               />
             );
+          } else if (inputType === "textarea") {
+            return (
+              <Antd.Input.TextArea
+                className="w-full"
+                status={error ? "error" : undefined}
+                placeholder={placeholder ?? label}
+                {...field}
+              />
+            );
           }
           return (
             <Antd.Input
