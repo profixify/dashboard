@@ -12,8 +12,8 @@ import type { CustomerType } from "@/pages/Customer/types.ts";
 import type { RepairTableType } from "@/pages/Repair/types.ts";
 import type { SparePartType } from "@/pages/SparePart/types.ts";
 import { useRepairs } from "@/services/Repair";
-import { Table } from "antd";
 import AddRepairModal from "./components/AddRepairModal";
+import Table from "@/components/Table";
 
 const Repair = () => {
   const { data: repairs, refetch: refetchRepairs } = useRepairs();
@@ -67,7 +67,11 @@ const Repair = () => {
   return (
     <Content
       title="Repair"
-      addAction={{ title: "Add Repair", onClick: openModal }}
+      addAction={{
+        title: "Add Repair",
+        onClick: openModal,
+        disabled: !repairs,
+      }}
     >
       <Table columns={columns} dataSource={repairs} rowKey="uuid" />
       <AddRepairModal

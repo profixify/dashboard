@@ -5,11 +5,12 @@ import type {
   CustomerType,
 } from "@/pages/Customer/types.ts";
 import { useCustomers } from "@/services/Customer.ts";
-import { Table } from "antd";
+// import { Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import AddCustomerModal from "./components/AddCustomerModal.tsx";
 import { URLS } from "@/core/consts/urls.ts";
 import { ShowDetailButton } from "@/components/Table/TableColumns";
+import Table from "@/components/Table";
 
 const Customer = () => {
   const { data: customers, refetch: refetchCustomers } = useCustomers();
@@ -35,7 +36,11 @@ const Customer = () => {
   return (
     <Content
       title="Customers"
-      addAction={{ title: "Customer", onClick: openModal }}
+      addAction={{
+        title: "Customer",
+        onClick: openModal,
+        disabled: !customers,
+      }}
     >
       <Table
         columns={columns}

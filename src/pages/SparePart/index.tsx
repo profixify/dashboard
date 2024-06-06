@@ -2,10 +2,10 @@ import Content from "@/core/layouts/Content.tsx";
 import { useLoading, useModal } from "@/hooks";
 import AddSparePartModal from "@/pages/SparePart/components/AddSparePartModal.tsx";
 import { useSpareParts } from "@/services/SparePart";
-import { Table } from "antd";
 import type { SparePartTableType } from "./types";
 import { URLS } from "@/core/consts/urls.ts";
 import { ShowDetailButton } from "@/components/Table/TableColumns";
+import Table from "@/components/Table";
 
 const SparePart = () => {
   const { isOpen, openModal, closeModal } = useModal();
@@ -37,7 +37,11 @@ const SparePart = () => {
   return (
     <Content
       title="Spare Parts"
-      addAction={{ title: "Spare Part", onClick: openModal }}
+      addAction={{
+        title: "Spare Part",
+        onClick: openModal,
+        disabled: !spareParts,
+      }}
     >
       <Table columns={columns} dataSource={spareParts} rowKey="uuid" />
       <AddSparePartModal

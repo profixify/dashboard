@@ -16,10 +16,12 @@ interface ContentProps {
   addAction?: {
     title: string;
     onClick: () => void;
+    disabled?: boolean;
   };
   editAction?: {
     title: string;
     onClick: () => void;
+    disabled?: boolean;
   };
 }
 
@@ -49,6 +51,7 @@ const Content: FC<ContentProps> = ({
       icon={<PiPlusCircleDuotone className="text-xl" />}
       onClick={addAction?.onClick}
       type="primary"
+      disabled={addAction.disabled}
     >
       {addAction?.title}
     </Button>
@@ -59,6 +62,7 @@ const Content: FC<ContentProps> = ({
       onClick={editAction?.onClick}
       type="primary"
       icon={<AiTwotoneEdit />}
+      disabled={editAction.disabled}
     >
       {editAction.title}
     </Button>
