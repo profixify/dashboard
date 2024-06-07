@@ -40,6 +40,7 @@ export const useCreateRepair = ({
     onError,
     onMutate,
     onSuccess,
+    retry: true,
   });
 };
 
@@ -59,6 +60,7 @@ export const useUpdateRepairStatus = ({
     onError,
     onMutate,
     onSuccess,
+    retry: true,
   });
 };
 

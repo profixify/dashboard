@@ -43,6 +43,7 @@ export const useCreateSparePart = ({
     onError,
     onMutate,
     onSuccess,
+    retry: true,
   });
 };
 
@@ -62,6 +63,7 @@ export const useEditSparePart = ({
     onError,
     onMutate,
     onSuccess,
+    retry: true,
   });
 };
 

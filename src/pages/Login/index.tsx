@@ -21,11 +21,16 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(schema),
-    defaultValues: import.meta.env.DEV ? {username: "demo", password: "demo"} : undefined
+    defaultValues:
+      import.meta.env.DEV || import.meta.env.VITE_APP_IS_DEMO
+        ? { username: "demo", password: "demo" }
+        : undefined,
   });
   const submitAction = async (data: LoginFormData) => {
     await mutateAsync(data);
   };
+
+  console.log(import.meta.env);
 
   return (
     <Wrapper>

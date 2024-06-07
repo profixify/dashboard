@@ -43,6 +43,7 @@ export const useCreateCustomer = ({
     onMutate,
     onError,
     onSuccess,
+    retry: true,
   });
 };
 
@@ -73,5 +74,6 @@ export const useEditCustomer = ({
     onMutate,
     onError,
     onSuccess,
+    retry: true,
   });
 };

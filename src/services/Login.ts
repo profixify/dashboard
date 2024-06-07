@@ -10,7 +10,7 @@ export const useLogin = () => {
   const axios = useAxios();
   const { toast } = useNotification();
   const { setTokens } = useAuthStore();
-  const login = useMutation({
+  return useMutation({
     mutationKey: ["login"],
     mutationFn: async (data: LoginFormData) => {
       const response = await axios.post("/token/", data);
@@ -33,5 +33,4 @@ export const useLogin = () => {
       toast.error("Invalid Credentials");
     },
   });
-  return login;
 };
