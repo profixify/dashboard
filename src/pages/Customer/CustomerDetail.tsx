@@ -4,10 +4,11 @@ import Content from "@/core/layouts/Content";
 import type { BaseSparePart } from "@/core/types";
 import type { CustomerRepairTableType } from "@/pages/Customer/types.ts";
 import { useCustomer, useCustomerRepairs } from "@/services/Customer.ts";
-import { Card, Table } from "antd";
+import { Table } from "antd";
 import { useParams } from "react-router-dom";
 import EditCustomerModal from "@/pages/Customer/components/EditCustomerModal.tsx";
 import { useLoading, useModal } from "@/hooks";
+import { DetailCard } from "@/components/Card/DetailCard.tsx";
 
 const CustomerDetail = () => {
   const { uuid } = useParams();
@@ -52,10 +53,9 @@ const CustomerDetail = () => {
       editAction={{ title: "Edit Customer", onClick: openModal }}
     >
       <div className="flex flex-col gap-2">
-        <Card className="w-1/4" title={customer?.fullName}>
-          <CardRow label="Identity Number" value={customer?.identityNumber} />
+        <DetailCard className="w-1/3" title={customer?.fullName}>
           <CardRow label="Phone Number" value={customer?.phoneNumber} />
-        </Card>
+        </DetailCard>
         <Table
           bordered
           columns={columns}

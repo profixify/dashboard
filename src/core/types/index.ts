@@ -20,6 +20,7 @@ export interface BaseSparePart extends BaseModel {
   name: string;
   brand: string;
   model: string;
+  price: string;
   priceWithCurrency: string;
   amount: number;
   leftAmount: number;

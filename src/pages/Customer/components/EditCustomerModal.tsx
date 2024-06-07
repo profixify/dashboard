@@ -29,13 +29,11 @@ const EditCustomerModal: FC<EditCustomerModalProps> = ({
 }) => {
   const { toast } = useNotification();
   const schema = z.object({
-    name: z.string(),
-    surname: z.string(),
-    identityNumber: z.string().min(11).max(11),
-    phoneNumber: z
-      .string({ message: "Please enter phone number" })
-      .min(13)
-      .max(13),
+    firstName: z.string(),
+    lastName: z.string(),
+    phoneNumber: z.string({ message: "Please enter phone number" }),
+    // .min(13)
+    // .max(13),
   });
   const {
     control,
@@ -62,28 +60,23 @@ const EditCustomerModal: FC<EditCustomerModalProps> = ({
   };
   return (
     <Modal isLoading={isLoading} open={open} onCancel={onCancel} title={title}>
+      {JSON.stringify(errors, null, 2)}
       <form onSubmit={handleSubmit(submitAction)}>
         <div className="flex items-center gap-2">
           <FormInput
-            label="Name"
-            name="name"
+            label="First Name"
+            name="firstName"
             control={control}
-            error={errors.name}
+            error={errors.firstName}
           />
           <FormInput
-            label="Surname"
-            name="surname"
+            label="Last Name"
+            name="lastName"
             control={control}
-            error={errors.surname}
+            error={errors.lastName}
           />
         </div>
         <div className="flex items-center gap-2">
-          <FormInput
-            label="Identity Number"
-            name="identityNumber"
-            control={control}
-            error={errors.identityNumber}
-          />
           <FormInput
             name="phoneNumber"
             error={errors.phoneNumber}

@@ -18,8 +18,11 @@ const SparePartDetail = () => {
       editAction={{ title: "Edit Spare Part", onClick: openModal }}
     >
       <Spin spinning={!sparePart}>
-        <Card className="w-1/4">
-          <CardRow label="Category" value="Apple / iPhone 6" />
+        <Card className="w-1/3">
+          <CardRow
+            label="Category"
+            value={`${sparePart?.brand} / ${sparePart?.model}`}
+          />
           <CardRow label="Name" value={sparePart?.name} />
           <CardRow label="Price" value={sparePart?.priceWithCurrency} />
           <CardRow label="Amount" value={sparePart?.amount} />

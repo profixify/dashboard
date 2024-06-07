@@ -126,7 +126,7 @@ const AddSparePartModal: FC<AddSparePartModalProps> = ({
             label="Price"
             name="price"
             control={control}
-            error={errors.priceWithCurrency}
+            error={errors.price}
             inputType="number"
           />
           <FormInput

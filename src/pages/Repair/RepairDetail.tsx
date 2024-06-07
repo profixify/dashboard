@@ -3,12 +3,12 @@ import Content from "@/core/layouts/Content.tsx";
 import { useLoading, useModal } from "@/hooks";
 import UpdateRepairStatusModal from "@/pages/Repair/components/UpdateRepairStatusModal.tsx";
 import { useRepair, useRepairStatus } from "@/services/Repair";
-import { Card } from "antd";
 import { useParams } from "react-router-dom";
 import { RepairStatusTableType } from "@/pages/Repair/types.ts";
 import Table from "@/components/Table";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { DetailCard } from "@/components/Card/DetailCard.tsx";
 
 dayjs.extend(relativeTime);
 const RepairDetail = () => {
@@ -41,35 +41,20 @@ const RepairDetail = () => {
     >
       <div className="flex flex-col gap-3">
         <div className="flex gap-5">
-          <Card
-            className="w-1/3"
-            title="Customer"
-            styles={{
-              header: {
-                minHeight: "40px",
-              },
-              body: {
-                padding: "1rem 1.5rem",
-              },
-            }}
-          >
+          <DetailCard className="w-1/3" title="Customer">
             <CardRow label="Full Name" value={repair?.customer.fullName} />
-            <CardRow
-              label="Identity Number"
-              value={repair?.customer.identityNumber}
-            />
             <CardRow
               label="Phone Number"
               value={repair?.customer.phoneNumber}
             />
-          </Card>
-          <Card className="w-1/3" title="Spare Part">
+          </DetailCard>
+          <DetailCard className="w-1/3" title="Spare Part">
             <CardRow label="Name" value={repair?.sparePart.name} />
             <CardRow
               label="Price"
               value={repair?.sparePart.priceWithCurrency}
             />
-          </Card>
+          </DetailCard>
         </div>
         <Table
           columns={repairStatusColumns}
