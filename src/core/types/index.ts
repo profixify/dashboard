@@ -2,14 +2,24 @@ interface BaseModel {
   uuid: string;
 }
 export interface BaseCustomer extends BaseModel {
-  name: string;
-  surname: string;
+  firstName: string;
+  lastName: string;
   fullName?: string;
   phoneNumber: string;
 }
 
+export interface BaseSparePartBrand extends BaseModel {
+  name: string;
+}
+
+export interface BaseSparePartModel extends BaseModel {
+  name: string;
+}
+
 export interface BaseSparePart extends BaseModel {
   name: string;
+  brand: string;
+  model: string;
   priceWithCurrency: string;
   amount: number;
   leftAmount: number;

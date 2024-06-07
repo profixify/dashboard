@@ -14,6 +14,8 @@ const SparePart = () => {
 
   const columns: SparePartTableType = [
     { key: "name", dataIndex: "name", title: "Name" },
+    { key: "brand", dataIndex: "brand", title: "Brand" },
+    { key: "model", dataIndex: "model", title: "Model" },
     {
       key: "priceWithCurrency",
       dataIndex: "priceWithCurrency",

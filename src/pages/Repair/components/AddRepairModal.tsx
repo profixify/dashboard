@@ -69,7 +69,10 @@ const AddRepairModal: FC<AddRepairModalProps> = ({
 
   return (
     <Modal isLoading={isLoading} open={open} onCancel={onCancel} title={title}>
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit(submitAction)}>
+      <form
+        className="flex flex-col gap-2"
+        onSubmit={handleSubmit(submitAction)}
+      >
         <FormSelect
           label="Customer"
           name="customer"
@@ -79,6 +82,13 @@ const AddRepairModal: FC<AddRepairModalProps> = ({
             value: customer.uuid,
           }))}
           error={errors.customer}
+          showSearch
+          filterOption={(inputValue, option) => {
+            return (option?.label ?? "")
+              .toString()
+              .toLowerCase()
+              .includes(inputValue.toLowerCase());
+          }}
         />
         <FormSelect
           label="Spare Part"
@@ -89,6 +99,13 @@ const AddRepairModal: FC<AddRepairModalProps> = ({
             value: sparePart.uuid,
           }))}
           error={errors.sparePart}
+          showSearch
+          filterOption={(inputValue, option) => {
+            return (option?.label ?? "")
+              .toString()
+              .toLowerCase()
+              .includes(inputValue.toLowerCase());
+          }}
         />
         <div className="flex items-center gap-2">
           <FormInput

@@ -64,3 +64,26 @@ export const useEditSparePart = ({
     onSuccess,
   });
 };
+
+export const useSparePartBrand = () => {
+  const axios = useAxios();
+  return useQuery({
+    queryKey: ["sparePartBrand"],
+    queryFn: async () => {
+      const response = await axios.get("/brands/");
+      return response.data;
+    },
+  });
+};
+
+export const useSparePartModel = ({ uuid }: { uuid?: string }) => {
+  const axios = useAxios();
+  return useQuery({
+    queryKey: ["sparePartModel"],
+    queryFn: async () => {
+      const response = await axios.get(`/brands/${uuid}/models/`);
+      return response.data;
+    },
+    enabled: false,
+  });
+};

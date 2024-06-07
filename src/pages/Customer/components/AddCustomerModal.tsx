@@ -27,9 +27,8 @@ const AddCustomerModal: FC<CustomerModalProps> = ({
 }) => {
   const { toast } = useNotification();
   const schema = z.object({
-    name: z.string(),
-    surname: z.string(),
-    identityNumber: z.string().min(11).max(11),
+    firstName: z.string(),
+    lastName: z.string(),
     countryCode: z.string({ message: "Please select country" }),
     phoneNumber: z
       .string({ message: "Please enter phone number" })
@@ -56,9 +55,8 @@ const AddCustomerModal: FC<CustomerModalProps> = ({
   const submitAction = async (data: CreateCustomerFormType) => {
     const dialCode = getPhoneCodeByCountryName(data.countryCode);
     const newData: CreateCustomerType = {
-      name: data.name,
-      surname: data.surname,
-      identityNumber: data.identityNumber,
+      firstName: data.firstName,
+      lastName: data.lastName,
       phoneNumber: `${dialCode}${data.phoneNumber}`,
     };
     await mutateAsync(newData);
@@ -68,27 +66,18 @@ const AddCustomerModal: FC<CustomerModalProps> = ({
       <form onSubmit={handleSubmit(submitAction)}>
         <div className="flex items-center gap-2">
           <FormInput
-            label="Name"
-            name="name"
+            label="First Name"
+            name="firstName"
             control={control}
-            error={errors.name}
+            error={errors.firstName}
           />
           <FormInput
-            label="Surname"
-            name="surname"
+            label="Last Name"
+            name="lastName"
             control={control}
-            error={errors.surname}
+            error={errors.lastName}
           />
         </div>
-        <div className="w-1/2">
-          <FormInput
-            label="Identity Number"
-            name="identityNumber"
-            control={control}
-            error={errors.identityNumber}
-          />
-        </div>
-
         <FormPhoneInput
           errors={{
             phoneNumber: errors.phoneNumber,

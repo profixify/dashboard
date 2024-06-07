@@ -12,7 +12,7 @@ export interface FormSelectProps extends SelectProps {
   name: string;
   control: any;
   label: string;
-  selectValues: SelectValueType[];
+  selectValues?: SelectValueType[];
   error: FieldError | undefined;
 }
 
@@ -24,6 +24,7 @@ const FormSelect: FC<FormSelectProps> = ({
   selectValues,
   defaultValue,
   placeholder,
+  ...props
 }) => {
   return (
     <div className="flex flex-col w-full">
@@ -40,6 +41,7 @@ const FormSelect: FC<FormSelectProps> = ({
             options={selectValues}
             defaultValue={defaultValue}
             placeholder={placeholder}
+            {...props}
             {...field}
           />
         )}
