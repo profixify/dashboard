@@ -20,6 +20,7 @@ import SparePartDetail from "@/pages/SparePart/SparePartDetail.tsx";
 import Repair from "@/pages/Repair";
 import RepairDetail from "@/pages/Repair/RepairDetail.tsx";
 import Settings from "@/pages/Settings";
+import { StyleProvider } from "@ant-design/cssinjs";
 
 type RouterProviderProps = FC;
 type RouterType = Pick<RouteObject, "path"> & {
@@ -60,7 +61,6 @@ const RouterProvider: RouterProviderProps = () => {
   return (
     <Routes>
       <Route path="/" element={<ProtectedRoute />}>
-      
         {protectedRoutes.map(({ path, Component }) => (
           <Route key={path} path={path} element={<Component />} />
         ))}
@@ -74,11 +74,13 @@ const RouterProvider: RouterProviderProps = () => {
 function App() {
   const queryClient = new QueryClient();
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename={import.meta.env.PROD ? "/dashboard" : ""}>
-        <RouterProvider />
-      </BrowserRouter>
-    </QueryClientProvider>
+    <StyleProvider layer>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter basename={import.meta.env.PROD ? "/dashboard" : ""}>
+          <RouterProvider />
+        </BrowserRouter>
+      </QueryClientProvider>
+    </StyleProvider>
   );
 }
 
