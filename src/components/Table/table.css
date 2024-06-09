@@ -1,0 +1,7 @@
+.ant-table-cell {
+    @apply px-4 py-2 !important;
+}
+
+.ant-table-row:hover, .ant-table-cell-row-hover{
+    @apply bg-zinc-200 !important;
+}

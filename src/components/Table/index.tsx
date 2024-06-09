@@ -1,5 +1,6 @@
 import * as Antd from "antd";
 import { FC } from "react";
+import "./table.css";
 
 interface TableProps extends Antd.TableProps {}
 
