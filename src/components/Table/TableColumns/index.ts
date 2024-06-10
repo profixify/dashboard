@@ -3,3 +3,4 @@ export { CustomerColumn } from "./CustomerColumn.tsx";
 export { SparePartColumn } from "./SparePartColumn.tsx";
 export { RepairCodeColumn } from "./RepairCodeColumn.tsx";
 export { ShowDetailButton } from "./ShowDetailButton.tsx";
+export { ActionColumn } from "./ActionColumn.tsx";
