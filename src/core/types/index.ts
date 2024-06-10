@@ -14,6 +14,7 @@ export interface BaseSparePartBrand extends BaseModel {
 
 export interface BaseSparePartModel extends BaseModel {
   name: string;
+  brand: string;
 }
 
 export interface BaseSparePart extends BaseModel {
@@ -41,6 +42,14 @@ export interface BaseRepairStatus extends BaseModel {
   note: string;
   status: string;
   createdAt: string;
+}
+
+export interface BaseSparePartBrand extends BaseModel {
+  name: string;
+}
+
+export interface BaseSparePartModel extends BaseModel {
+  name: string;
 }
 
 export interface BaseSettings {

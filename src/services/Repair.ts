@@ -44,7 +44,7 @@ export const useCreateRepair = ({
   });
 };
 
-export const useUpdateRepairStatus = ({
+export const useCreateRepairStatus = ({
   uuid,
   onError,
   onMutate,
@@ -61,16 +61,5 @@ export const useUpdateRepairStatus = ({
     onMutate,
     onSuccess,
     retry: true,
-  });
-};
-
-export const useRepairStatus = ({ uuid }: { uuid?: string }) => {
-  const axios = useAxios();
-  return useQuery({
-    queryKey: ["repairStatus"],
-    queryFn: async () => {
-      const response = await axios.get(`/repairs/${uuid}/statuses/`);
-      return response.data;
-    },
   });
 };

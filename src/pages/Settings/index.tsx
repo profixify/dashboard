@@ -1,59 +1,18 @@
-import { FormButton } from "@/components/Form/FormButton";
-import FormSelect from "@/components/Form/FormSelect";
-import { defaultCurrencyOptions } from "@/core/consts/currency";
 import Content from "@/core/layouts/Content.tsx";
-import type { BaseSettings } from "@/core/types";
-import { useSettings, useUpdateSettings } from "@/services/Settings";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { useNotification } from "@/hooks";
-
-interface SettingsFormInputs extends BaseSettings {}
+import { Tabs } from "antd";
+import Brand from "@/pages/Settings/Brand";
+import Currency from "@/pages/Settings/Currency.tsx";
+import Model from "@/pages/Settings/Model";
 
 const Settings = () => {
-  const { toast } = useNotification();
-  const { data: settings, refetch: refetchSettings } = useSettings();
-  const { mutateAsync: updateSettings, error } = useUpdateSettings({
-    onError: () => {
-      toast.error("Something went wrong");
-      console.error(error);
-    },
-    onSuccess: () => {
-      toast.success("The default currency changed successfully.");
-    },
-  });
-  const schema = z.object({
-    defaultCurrency: z.string(),
-  });
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SettingsFormInputs>({
-    resolver: zodResolver(schema),
-  });
-  const submitAction = async (data: Partial<SettingsFormInputs>) => {
-    const response = await updateSettings(data);
-    if (response.status === 200) await refetchSettings();
-  };
+  const tabItems = [
+    { label: "Currency", key: "currency", children: <Currency /> },
+    { label: "Brand", key: "brand", children: <Brand /> },
+    { label: "Model", key: "model", children: <Model /> },
+  ];
   return (
     <Content title="Settings">
-      <div className="w-1/3">
-        {settings && (
-          <form onSubmit={handleSubmit(submitAction)}>
-            <FormSelect
-              name="defaultCurrency"
-              control={control}
-              label="Currency"
-              selectValues={defaultCurrencyOptions}
-              defaultValue={settings?.defaultCurrency}
-              error={errors.defaultCurrency}
-            />
-            <FormButton errors={errors}>Save</FormButton>
-          </form>
-        )}
-      </div>
+      <Tabs defaultActiveKey="brand" items={tabItems} />
     </Content>
   );
 };
