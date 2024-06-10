@@ -2,11 +2,7 @@ import { FormButton } from "@/components/Form/FormButton.tsx";
 import { FormInput } from "@/components/Form/FormInput.tsx";
 import Modal, { type ModalProps } from "@/components/Modal";
 import { useNotification } from "@/hooks";
-import {
-  useCreateSparePart,
-  useSparePartBrand,
-  useSparePartModel,
-} from "@/services/SparePart";
+import { useCreateSparePart } from "@/services/SparePart";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -14,6 +10,7 @@ import { z } from "zod";
 import type { AddSparePartFormInputs } from "../types";
 import FormSelect from "@/components/Form/FormSelect.tsx";
 import { BaseSparePartBrand, BaseSparePartModel } from "@/core/types";
+import { useBrandModels, useBrands } from "@/services/Brand.ts";
 
 interface AddSparePartModalProps extends ModalProps {
   toggleLoading: () => void;
@@ -43,8 +40,8 @@ const AddSparePartModal: FC<AddSparePartModalProps> = ({
     resolver: zodResolver(schema),
   });
   const brand = watch("brand");
-  const { data: brands } = useSparePartBrand();
-  const { data: models, refetch: refetchModels } = useSparePartModel({
+  const { data: brands } = useBrands();
+  const { data: models, refetch: refetchModels } = useBrandModels({
     uuid: brand,
   });
 

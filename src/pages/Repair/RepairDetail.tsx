@@ -2,13 +2,14 @@ import { CardRow } from "@/components/Card";
 import Content from "@/core/layouts/Content.tsx";
 import { useLoading, useModal } from "@/hooks";
 import UpdateRepairStatusModal from "@/pages/Repair/components/UpdateRepairStatusModal.tsx";
-import { useRepair, useRepairStatus } from "@/services/Repair";
+import { useRepair } from "@/services/Repair";
 import { useParams } from "react-router-dom";
 import { RepairStatusTableType } from "@/pages/Repair/types.ts";
 import Table from "@/components/Table";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { DetailCard } from "@/components/Card/DetailCard.tsx";
+import { useRepairStatus } from "@/services/RepairStatus.ts";
 
 dayjs.extend(relativeTime);
 const RepairDetail = () => {

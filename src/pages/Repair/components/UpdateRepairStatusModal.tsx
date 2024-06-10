@@ -7,7 +7,7 @@ import FormSelect from "@/components/Form/FormSelect.tsx";
 import { FormButton } from "@/components/Form/FormButton.tsx";
 import { repairStatusOptions } from "@/core/consts/currency.ts";
 import { UpdateRepairStatusFormInputs } from "@/pages/Repair/types.ts";
-import { useUpdateRepairStatus } from "@/services/Repair.ts";
+import { useCreateRepairStatus } from "@/services/Repair.ts";
 import { useParams } from "react-router-dom";
 import { useNotification } from "@/hooks";
 import { FormInput } from "@/components/Form/FormInput.tsx";
@@ -25,7 +25,7 @@ const UpdateRepairStatusModal: FC<UpdateRepairStatusModalProps> = ({
 }) => {
   const { uuid } = useParams();
   const { toast } = useNotification();
-  const { mutateAsync, error } = useUpdateRepairStatus({
+  const { mutateAsync, error } = useCreateRepairStatus({
     uuid,
     onMutate: () => toggleLoading(),
     onError: () => {
