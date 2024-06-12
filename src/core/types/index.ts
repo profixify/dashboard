@@ -1,6 +1,5 @@
-interface BaseModel {
-  uuid: string;
-}
+import { BaseModel } from "@/core/types/base.ts";
+
 export interface BaseCustomer extends BaseModel {
   firstName: string;
   lastName: string;
