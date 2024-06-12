@@ -53,6 +53,7 @@ export interface BaseSparePartModel extends BaseModel {
 
 export interface BaseSettings {
   defaultCurrency: string;
+  company: string;
 }
 
 export interface BaseDashboardCounts {

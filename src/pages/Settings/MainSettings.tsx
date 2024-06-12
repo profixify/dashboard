@@ -7,12 +7,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FormSelect from "@/components/Form/FormSelect.tsx";
 import { defaultCurrencyOptions } from "@/core/consts/currency.ts";
 import { FormButton } from "@/components/Form/FormButton.tsx";
+import { useCompanies } from "@/services/Company.ts";
+import { BaseCompany } from "@/core/types/Company.ts";
 
 interface SettingsFormInputs extends BaseSettings {}
 
-const Currency = () => {
+const MainSettings = () => {
   const { toast } = useNotification();
   const { data: settings, refetch: refetchSettings } = useSettings();
+  const { data: companies } = useCompanies();
   const { mutateAsync: updateSettings, error } = useUpdateSettings({
     onError: () => {
       toast.error("Something went wrong");
@@ -24,6 +27,7 @@ const Currency = () => {
   });
   const schema = z.object({
     defaultCurrency: z.string(),
+    company: z.string(),
   });
   const {
     control,
@@ -43,10 +47,21 @@ const Currency = () => {
           <FormSelect
             name="defaultCurrency"
             control={control}
-            label="Currency"
+            label="MainSettings"
             selectValues={defaultCurrencyOptions}
             defaultValue={settings?.defaultCurrency}
             error={errors.defaultCurrency}
+          />
+          <FormSelect
+            name="company"
+            control={control}
+            label="Company"
+            selectValues={companies?.map((company: BaseCompany) => ({
+              label: company.name,
+              value: company.uuid,
+            }))}
+            defaultValue={settings?.company}
+            error={errors.company}
           />
           <FormButton errors={errors}>Save</FormButton>
         </form>
@@ -55,4 +70,4 @@ const Currency = () => {
   );
 };
 
-export default Currency;
+export default MainSettings;
